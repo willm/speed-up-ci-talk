@@ -29,7 +29,7 @@ find . -type f | wc -l
 
 That's right, without writing a single line of code we have 24MB and 3952 files spread over 198 modules maintained individually.
 
-# Use compact docker images
+# Use compact base docker images
 
 The official node image is based on debian jessie, containers are typically designed to run a single process so don't nececarily need a fully featured operating system. Node also provides images based on the lightweight alpine linux distribution. This image is nearly **13 times smaller** than the official debian one! When you're running regular builds that need to pull a fresh image, that can save you a hell of a lot of time.
 
@@ -63,7 +63,7 @@ ADD . /app
 The docker caching mechanism records a hash of the file or file in each ADD directive and will only run it again if the hash differs from the one in its cache. Therefore unless you change the content of package.json, the npm install command will be served from cache, saving you precious minutes of build time.
 
 
-# Keep your production images compact
+# Keep your production images lean
 
 To facilitate fast deployments, it's a good idea to keep the images you deploy to production as lean as possible. One strategy is to use a "build" container which contains all the tools needed to compile and test your code. The output of this container should be a tarball of your built application which can then be extracted into a much leaner "runtime" container.
 
