@@ -67,5 +67,9 @@ The docker caching mechanism records a hash of the file or file in each ADD dire
 
 To facilitate fast deployments, it's a good idea to keep the images you deploy to production as lean as possible. One strategy is to use a "build" container which contains all the tools needed to compile and test your code. The output of this container should be a tarball of your built application which can then be extracted into a much leaner "runtime" container.
 
+# Use the timeout option for stopping containers
+
+By default running docker stop will send a signal to interupt your app, then wait 10 seconds before it kills it. Often during build processes, we don't care about graceful shutdown, so you can set a much smaller or 0 timeout.
+
 # Use yarn
 # Run your tests in parallel
