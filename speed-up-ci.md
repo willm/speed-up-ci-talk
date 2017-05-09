@@ -71,5 +71,14 @@ To facilitate fast deployments, it's a good idea to keep the images you deploy t
 
 By default running docker stop will send a signal to interupt your app, then wait 10 seconds before it kills it. Often during build processes, we don't care about graceful shutdown, so you can set a much smaller or 0 timeout.
 
+# Don't bloat your agents or slaves with software
+
+Things start out like this:
+
+Team A wants to use the brand new CI set up. Their app is pretty simple, it needs to pull their code from git, install some npm packages, run some tests using node 4 and deploy to google app engine. Team B then sees that Team A are very happy with their slick new CI / CD set up and gets their project set up. They are using python 2.7, they call out to image magick to do some image processing, then upload their app via FTP to a server running internally somewhere. Team C has been requested to build a mobile app on top of this back end, they want to use the CI set up too. Since this is a brand new app, they decide to build it with react, they start building their app and then hit a problem when running their build. They require the very latest node js version 7.10.0 to be installed which conflicts with Team A's node js version. They then request nvm to be installed so they can switch to use a different version at build time.
+
+# Run builds for each pull request and display status
+
+# Keep configuration in source control
 # Use yarn
 # Run your tests in parallel
